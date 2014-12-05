@@ -81,15 +81,10 @@ def newDot(stdscr, maxy, maxx, snakey, snakex):
             return (newy, newx)
 
 def snakeHere(y, x, snakey, snakex):
-    lasthit = 0
-    while True:
-        try: 
-            yind = snakey.index(y, lasthit)
-            lasthit = yind+1
-            if snakex[yind] == x:
-                return True
-        except ValueError:
-            return False    
+    for (candy, candx) in zip(snakey, snakex):
+        if y == candy and x == candx:
+            return True
+    return False
     
 if __name__ == '__main__':
     curses.wrapper(snakeLoop)
